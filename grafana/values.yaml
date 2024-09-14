@@ -440,7 +440,7 @@ initChownData:
 
 # Administrator credentials when not using an existing secret (see below)
 adminUser: admin
-# adminPassword: strongpassword
+adminPassword: strongpassword
 
 # Use an existing secret for the admin user.
 admin:
@@ -1381,3 +1381,8 @@ extraObjects: []
 # you can disable this check by setting assertNoLeakedSecrets to false.
 assertNoLeakedSecrets: true
 
+server:
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 9090

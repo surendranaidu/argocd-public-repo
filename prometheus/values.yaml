@@ -1303,3 +1303,8 @@ prometheus-pushgateway:
   serviceAnnotations:
     prometheus.io/probe: pushgateway
 
+server:
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 9090
