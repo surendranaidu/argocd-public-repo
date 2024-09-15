@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: grafana/grafana:9.6.1
+        image: grafana/grafana:latest
         ports:
         - containerPort: 3000
         volumeMounts:
