@@ -7,7 +7,7 @@ spec:
   source:
     repoURL: 'https://github.com/surendranaidu/argocd-public-repo.git'
     targetRevision: HEAD
-    path: 'prometheus'
+    path: prometheus
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring

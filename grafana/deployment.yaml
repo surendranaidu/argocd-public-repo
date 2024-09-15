@@ -16,7 +16,24 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: grafana/grafana:latest
+        image: grafana/grafana:9.6.1
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - name: config
+          mountPath: /etc/grafana
+      volumes:
+      - name: config
+        configMap:
+          name: grafana-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+spec:
+  ports:
+  - port: 3000
+  selector:
+    app: grafana
 
