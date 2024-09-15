@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: prometheus
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/surendranaidu/argocd-public-repo.git'
     targetRevision: HEAD
-    path: grafana  # Ensure this path is correct
+    path: prometheus  # Path to Prometheus YAMLs in the repo
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: default
