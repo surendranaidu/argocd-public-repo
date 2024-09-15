@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: prometheus
-        image: prom/prometheus:v2.32.1
+        image: prom/prometheus:latest
         ports:
         - containerPort: 9090
         volumeMounts:
@@ -26,3 +26,4 @@ spec:
       - name: prometheus-config
         configMap:
           name: prometheus-config
+

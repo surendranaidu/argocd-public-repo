@@ -1,18 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
-  namespace: argocd
+  name: grafana-app
 spec:
   project: default
   source:
     repoURL: 'https://github.com/surendranaidu/argocd-public-repo.git'
-    path: grafana
     targetRevision: HEAD
-    helm:
-      parameters:
-        - name: "image.tag"
-          value: "9.0.0"
+    path: 'grafana'
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring

@@ -1,69 +1,13 @@
-# values.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+    scrape_configs:
+      - job_name: 'prometheus'
+        static_configs:
+        - targets: ['localhost:9090']
 
-# Global settings that apply to all Prometheus components
-global:
-  scrape_interval: 15s   # How frequently to scrape targets
-  evaluation_interval: 15s  # How frequently to evaluate rules
-
-# Server configuration
-server:
-  # The base path for the Prometheus web interface
-  basePath: /prometheus
-  
-  # Storage configuration
-  storageSpec:
-    # Retention settings
-    retention: 10d
-    path: /prometheus
-  
-  # Resources for the Prometheus server
-  resources:
-    requests:
-      memory: 1Gi
-      cpu: 500m
-    limits:
-      memory: 1Gi
-      cpu: 1
-
-  # Alertmanager configuration
-  alertmanager:
-    # Config for Alertmanager
-    config:
-      route:
-        receiver: 'default-receiver'
-      receivers:
-        - name: 'default-receiver'
-          email_configs:
-            - to: 'alerts@example.com'
-
-# Scrape configurations
-scrapeConfigs:
-  - job_name: 'prometheus'
-    static_configs:
-      - targets: ['localhost:9090']
-
-# Additional configurations
-additionalScrapeConfigs:
-  - job_name: 'node'
-    static_configs:
-      - targets: ['node-exporter:9100']
-
-# Configurations for Prometheus nodes (if using HA)
-ha:
-  enabled: false
-  replicas: 1
-
-# Extra environment variables for the Prometheus server
-extraEnv: []
-
-# Additional configuration for Prometheus alerting
-alerting:
-  enabled: true
-  rules:
-    - name: 'example-alert'
-      expr: 'up == 0'
-      for: 5m
-      labels:
-        severity: 'critical'
-      annotations:
-        summary: 'Instance {{ $labels.instance }} is down'
